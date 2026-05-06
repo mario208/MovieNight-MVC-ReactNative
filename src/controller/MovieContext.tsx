@@ -8,7 +8,7 @@ const STORAGE_KEY = '@movie_night_favorites';
 export const MovieProvider = ({ children }: { children: React.ReactNode }) => {
   const [favorites, setFavorites] = useState<number[]>([]);
   const [movies, setMovies] = useState<Movie[]>([]);
-
+    
   // 1. Load favorites from storage on mount
   useEffect(() => {
     const loadFavorites = async () => {

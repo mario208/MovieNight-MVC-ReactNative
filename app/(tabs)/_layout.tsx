@@ -1,53 +1,41 @@
-import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
-
-import { useColorScheme } from '@/components/useColorScheme';
-// Using the brand colors we defined in your MVC theme
-import { Colors as BrandColors } from '@/src/views/theme/colors';
-
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={26} style={{ marginBottom: -3 }} {...props} />;
-}
+import { Ionicons } from '@expo/vector-icons'; 
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        // Using your high-energy neon orange for the active tab
-        tabBarActiveTintColor: BrandColors.primary,
+        tabBarActiveTintColor: '#FF4400', // لون النيون البرتقالي عند التحديد
+        tabBarInactiveTintColor: '#888',
         tabBarStyle: {
-          backgroundColor: BrandColors.background,
-          borderTopColor: '#333',
+          backgroundColor: '#000', // خلفية سوداء للشريط
+          borderTopColor: 'rgba(255, 68, 0, 0.3)', // خط علوي نيون خفيف
+          paddingBottom: 5,
         },
         headerStyle: {
-          backgroundColor: BrandColors.background,
+          backgroundColor: '#000',
         },
-        headerTitleStyle: {
-          color: BrandColors.text,
-          fontWeight: 'bold',
-        },
-        headerShown: true,
+        headerTintColor: '#fff',
       }}>
+      
+      {/* التاب الأولى: صفحة الأفلام الرئيسية */}
       <Tabs.Screen
         name="index"
         options={{
           title: 'Movies',
-          tabBarIcon: ({ color }) => <TabBarIcon name="film" color={color} />,
+          tabBarIcon: ({ color }) => <Ionicons name="film-outline" size={24} color={color} />,
         }}
       />
+      
+      {/* التاب الثانية: صفحة المفضلة */}
       <Tabs.Screen
-        name="favorites" // Changed from 'two' to 'favorites'
+        name="favorites" // ✅ تم إعادة هذا السطر إلى مكانه الصحيح هنا
         options={{
           title: 'Favorites',
-          tabBarIcon: ({ color }) => <TabBarIcon name="heart" color={color} />,
+          tabBarIcon: ({ color }) => <Ionicons name="heart-outline" size={24} color={color} />,
         }}
       />
+      
     </Tabs>
   );
 }
